@@ -1,0 +1,29 @@
+.navBar {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-evenly; */
+}
+
+.navLink {
+    text-decoration: none;
+    margin: 10px;
+    margin-left: 50px;
+    color: white;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+}
+
+.links {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.navImage {
+    width: 200px;
+    height: auto;
+    margin: 0px;
+}
+
+.navLink:hover {
+    color: darkgray;
+}
