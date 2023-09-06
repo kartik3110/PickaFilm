@@ -3,9 +3,8 @@ import './Home.css'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom";
-import Card from "../../components/card/Card";
-
-
+import MultiCarousel from "../../components/MultiCarousel/MultiCarousel";
+import Rating from "../../components/Rating/Rating";
 // const fetch = require('node-fetch');
 
 export default function Home() {
@@ -31,7 +30,7 @@ export default function Home() {
     }, [])
     return (
         <>
-
+            <br />
             <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} autoPlay={false} interval={7000}>
                 {popularMovies.map((m) => {
                     return (
@@ -41,10 +40,7 @@ export default function Home() {
                                 <div className="details">
                                     <div className="title" >{m.title}</div>
                                     <div className="release-date">{(m.release_date).slice(0, 7)}</div>
-                                    <span className="rating">{(m.vote_average) / 2}
-                                        <i class="fa-solid fa-star"></i>
-                                    </span>
-
+                                    <Rating movie={m} />
                                     <p className="overview">{m.overview}</p>
                                 </div>
                             </div>
@@ -53,12 +49,12 @@ export default function Home() {
                 })}
             </Carousel >
             {isLoading && <h1>Loading carousel..</h1>}
-            <h1>Popular Movies</h1>
-            {popularMovies.map(movie => {
-                return (
-                    <Card />
-                )
-            })}
+            <h2>Popular Movies</h2>
+            <MultiCarousel type="popular" />
+            <h2>Top Rated Movies</h2>
+            <MultiCarousel type="top_rated" />
+            {/* <h2>Upcoming Movies</h2>
+            <MultiCarousel type="upcoming" /> */}
         </>
     )
 }
