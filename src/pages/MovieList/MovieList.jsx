@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import Card from "../card/Card"
-import './MultiCarousel.css'
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import { useParams } from "react-router-dom";
+import Card from "../../components/card/Card";
+import './MovieList.css'
 
-export default function MultiCarousel({ type }) {
+export default function MovieList() {
     const [popularMovies, setPopularMovies] = useState([]);
     // const [isLoading, setIsLoading] = useState(true);
+    const { type } = useParams();
     useEffect(() => {
         const url = `https://api.themoviedb.org/3/movie/${type || 'popular'}?language=en-US&page=1`;
         const options = {
@@ -23,32 +23,13 @@ export default function MultiCarousel({ type }) {
                 // setIsLoading(false)
             })
             .catch(err => console.error('error:' + err));
-    }, [])
+    }, [type])
 
-    const responsive = {
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 6,
-            slidesToSlide: 5 // optional, default to 1.
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 2,
-            slidesToSlide: 2 // optional, default to 1.
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
-            slidesToSlide: 1 // optional, default to 1.
-        }
-    };
 
     return (
         <>
-            <Carousel className="multi-carousel"
-                responsive={responsive}
-                transitionDuration={1000}>
-
+            <h1>{type} Movies</h1>
+            <div className="movie-list">
                 {
                     popularMovies.map(movie => {
                         return (
@@ -56,7 +37,7 @@ export default function MultiCarousel({ type }) {
                         )
                     })
                 }
-            </Carousel>
+            </div>
         </>
     )
 }

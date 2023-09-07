@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/home/Home'
 import Navbar from './components/navbar/Navbar'
+import MovieList from './pages/MovieList/MovieList'
+import MovieDetail from './pages/MovieDetail/MovieDetail'
 function App() {
 
   return (
@@ -9,8 +11,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route index element={<Home />}></Route>
-          <Route path='/movie/:id' element={<h1>particular movie from routers </h1>}></Route>
-          <Route path='/movies/:type' element={<h1>many movies from routers index</h1>}></Route>
+          <Route path='/movie/:id' element={<MovieDetail />}></Route>
+          <Route path='/movies/:type' element={<MovieList />}></Route>
         </Routes>
       </BrowserRouter>
 

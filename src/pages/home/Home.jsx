@@ -34,7 +34,7 @@ export default function Home() {
             <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} autoPlay={false} interval={7000}>
                 {popularMovies.map((m) => {
                     return (
-                        <Link to={`/movie/1`} >
+                        <Link to={`/movie/${m.id}`} key={m.id} >
                             <div className="carousel-item">
                                 <img className="backdrop" src={`https://image.tmdb.org/t/p/original${m && m.backdrop_path}`} />
                                 <div className="details">

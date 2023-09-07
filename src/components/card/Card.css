@@ -26,11 +26,21 @@
     position: absolute;
     bottom: 0px;
     display: none;
+    padding-left: 1%;
     /* transition: all 0.2s; */
 }
 
 .card:hover .movie-info {
     display: block;
+}
+
+.movie-date {
+    display: inline-block;
+}
+
+.movie-rating {
+    display: inline;
+    margin-left: 70px;
 }
 
 .movie-title {
