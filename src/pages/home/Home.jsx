@@ -23,7 +23,7 @@ export default function Home() {
             .then(res => res.json())
             .then(data => {
                 setPopularMovies(data.results)
-                console.log(data.results)
+                // console.log(data.results)
                 setIsLoading(false);
             })
             .catch(err => console.error('error:' + err));
@@ -49,9 +49,7 @@ export default function Home() {
                 })}
             </Carousel >
             {isLoading && <h1>Loading carousel..</h1>}
-            <h2>Popular Movies</h2>
             <MultiCarousel type="popular" />
-            <h2>Top Rated Movies</h2>
             <MultiCarousel type="top_rated" />
             {/* <h2>Upcoming Movies</h2>
             <MultiCarousel type="upcoming" /> */}

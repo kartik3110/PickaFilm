@@ -1,0 +1,27 @@
+.page-footer {
+    color: grey;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-text {
+    width: 100%;
+    text-align: center;
+}
+
+.badge-gh,
+.badge-linkedin {
+    background-color: gray;
+    color: white;
+    text-decoration: none;
+    padding: .3rem;
+    padding-top: 0.15rem;
+    /* border: 2px solid white; */
+    border-radius: 10px;
+}
+
+.badge-gh {
+    margin-right: 1%;
+
+}

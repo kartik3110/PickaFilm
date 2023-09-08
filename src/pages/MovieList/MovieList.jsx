@@ -28,7 +28,11 @@ export default function MovieList() {
 
     return (
         <>
-            <h1>{type} Movies</h1>
+            <h1>{type === 'top_rated' ? 'Top Rated'
+                : type === 'popular' ? 'Popular'
+                    : type === 'upcoming' ? 'Upcoming'
+                        : type === 'now_playing' ? 'Now Playing'
+                            : ''} Movies</h1>
             <div className="movie-list">
                 {
                     popularMovies.map(movie => {

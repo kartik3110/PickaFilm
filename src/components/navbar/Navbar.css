@@ -14,16 +14,32 @@
 }
 
 .links {
+    display: flex;
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: 40px;
 }
 
 .navImage {
-    width: 200px;
+    width: 180px;
     height: auto;
     margin: 0px;
 }
 
 .navLink:hover {
-    color: darkgray;
+    color: #f5cb5c;
+}
+
+@media (max-width: 768px) {
+
+    /* .links {
+        flex-direction: column;
+    } */
+    .navLink {
+        margin: 10px;
+        margin-left: 20px;
+    }
+
+    .navLink span {
+        display: none;
+    }
 }

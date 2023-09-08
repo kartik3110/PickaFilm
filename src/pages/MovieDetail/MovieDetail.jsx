@@ -1,33 +1,80 @@
 import { useState, useEffect } from 'react';
 import './MovieDetail.css'
 import { useParams } from 'react-router-dom'
+import Card from '../../components/card/Card';
+
 export default function MovieDetail() {
-    const { id } = useParams();
-    const [details, setDetails] = useState();
-    useEffect(() => {
+  const { id } = useParams();
+  const [details, setDetails] = useState();
+  useEffect(() => {
 
-        const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
-        const options = {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZWEwMzUwMjFjYWZmNDUwZTZmMTBiZjgxMDM0OWY3MCIsInN1YiI6IjY0ZWQ3NTBmMWZlYWMxMDExYjJmM2Y0MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cA26OYeNmvFGxERQypAo5RiIBKsr1NGph8QCsHdLrFo'
-            }
-        };
+    const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZWEwMzUwMjFjYWZmNDUwZTZmMTBiZjgxMDM0OWY3MCIsInN1YiI6IjY0ZWQ3NTBmMWZlYWMxMDExYjJmM2Y0MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cA26OYeNmvFGxERQypAo5RiIBKsr1NGph8QCsHdLrFo'
+      }
+    };
 
-        fetch(url, options)
-            .then(res => res.json())
-            .then(data => {
-                setDetails(data)
-                console.log(data)
-            })
-            .catch(err => console.error('error:' + err));
-    }, [])
-    return (
-        <>
-            <img className='backdrop-image' src={`https://image.tmdb.org/t/p/original${details?.backdrop_path}`} />
-        </>
-    )
+    fetch(url, options)
+      .then(res => res.json())
+      .then(data => {
+        setDetails(data)
+        console.log(data)
+      })
+      .catch(err => console.error('error:' + err));
+  }, [id])
+  return (
+    <>
+      <div className='movie'>
+        <div className='movie-image'>
+          <img className='backdrop-image' src={`https://image.tmdb.org/t/p/original${details?.backdrop_path}`} />
+        </div>
+        <div className="movie-details">
+          <div className="details-left">
+            <div className='movie-poster'>
+              <img src={`https://image.tmdb.org/t/p/original${details?.poster_path}`} />
+            </div>
+          </div>
+          <div className="details-right">
+            <h1 className="detail-title">
+              {details?.title}
+            </h1>
+            <div className="detail-tagline">
+              {details?.tagline}
+            </div>
+            <div className="detail-rating">
+              <div className="detail-rate">
+                {details?.vote_average}<i className="fas fa-star" />
+              </div>
+              <div className="detail-num-votes">(
+                {details?.vote_count} votes)
+              </div>
+            </div>
+            <div className='detail-runtime'>
+              {details?.runtime} mins
+            </div>
+            <div className="detail-date">
+              Release Date: {details?.release_date}
+            </div>
+            <div className='detail-genres'>
+              {details?.genres.map(el => {
+                return (
+                  <div className="genre" key={el.id}> {el.name} </div>
+                )
+              })}
+            </div>
+            <div className="detail-overview">
+              <h3>Overview: </h3>
+              <p>{details?.overview}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </>
+  )
 
 }
 
