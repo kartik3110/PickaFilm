@@ -81,3 +81,69 @@
     border-radius: 20px;
     margin-right: 0.6rem;
 }
+
+
+
+.detail-heading {
+    font-size: 2.2rem;
+    font-family: poppins;
+}
+
+.newTab {
+    margin-left: 1.4rem;
+}
+
+.detail-production {
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+}
+
+.detail-links {
+    position: relative;
+    bottom: 120px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 75%;
+}
+
+.movie__Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem 2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 150px;
+    color: black;
+    font-weight: bold;
+}
+
+.movie__homeButton {
+    background-color: rgb(255, 0, 0);
+
+}
+
+.movie__imdbButton {
+    background-color: #f3ce13;
+}
+
+.movie__productionComapany {
+    width: 200px;
+    margin: 1.5rem;
+    background-color: white;
+    padding: 2rem;
+}
+
+.productionCompanyImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* Prevent images from wrapping to the next line */
+    /* overflow: hidden; */
+}

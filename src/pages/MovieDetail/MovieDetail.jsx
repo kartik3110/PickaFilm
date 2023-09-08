@@ -21,7 +21,6 @@ export default function MovieDetail() {
       .then(res => res.json())
       .then(data => {
         setDetails(data)
-        console.log(data)
       })
       .catch(err => console.error('error:' + err));
   }, [id])
@@ -70,6 +69,32 @@ export default function MovieDetail() {
               <p>{details?.overview}</p>
             </div>
           </div>
+        </div>
+        <div className="detail-links">
+          <div className="detail-heading">Useful Links</div>
+          {
+            details && details.homepage && <a href={details.homepage} target="_blank" style={{ textDecoration: "none" }}><p><span className="movie__homeButton movie__Button">Homepage <i className="newTab fas fa-external-link-alt"></i></span></p></a>
+          }
+          {
+            details && details.imdb_id && <a href={"https://www.imdb.com/title/" + details.imdb_id} target="_blank" style={{ textDecoration: "none" }}><p><span className="movie__imdbButton movie__Button">IMDb<i className="newTab fas fa-external-link-alt"></i></span></p></a>
+          }
+        </div>
+        <div className="detail-heading">Production companies</div>
+        <div className="detail-production">
+          {
+            details && details.production_companies && details.production_companies.map(company => (
+              <div key={company.id}>
+                {
+                  company.logo_path
+                  &&
+                  <span className="productionCompanyImage">
+                    <img className="movie__productionComapany" src={`https://image.tmdb.org/t/p/original${company.logo_path}`} />
+                    <span>{company.name}</span>
+                  </span>
+                }
+              </div>
+            ))
+          }
         </div>
       </div>
 

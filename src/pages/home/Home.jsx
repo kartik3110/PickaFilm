@@ -5,6 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom";
 import MultiCarousel from "../../components/MultiCarousel/MultiCarousel";
 import Rating from "../../components/Rating/Rating";
+import Footer from "../../components/Footer/Footer";
 // const fetch = require('node-fetch');
 
 export default function Home() {
@@ -48,11 +49,14 @@ export default function Home() {
                     );
                 })}
             </Carousel >
-            {isLoading && <h1>Loading carousel..</h1>}
+            {isLoading && <i className="fa-solid fa-circle-notch fa-spin fa-2xl"></i>}
             <MultiCarousel type="popular" />
+            {isLoading && <i className="fa-solid fa-circle-notch fa-spin fa-2xl"></i>}
             <MultiCarousel type="top_rated" />
-            {/* <h2>Upcoming Movies</h2>
-            <MultiCarousel type="upcoming" /> */}
+            {isLoading && <i className="fa-solid fa-circle-notch fa-spin fa-2xl"></i>}
+            <MultiCarousel type="upcoming" />
+            {isLoading && <i className="fa-solid fa-circle-notch fa-spin fa-2xl"></i>}
+            <Footer />
         </>
     )
 }
