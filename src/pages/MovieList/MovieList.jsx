@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Card from "../../components/card/Card";
+import MovieDetailHeading from "../../components/MovieListHeading/MovieListHeading";
 import './MovieList.css'
 
 export default function MovieList() {
-    const [popularMovies, setPopularMovies] = useState([]);
+    const [movieList, setMovieList] = useState([]);
     // const [isLoading, setIsLoading] = useState(true);
     const { type } = useParams();
     useEffect(() => {
@@ -19,29 +20,53 @@ export default function MovieList() {
         fetch(url, options)
             .then(res => res.json())
             .then(data => {
-                setPopularMovies(data.results)
+                // console.log(data.results)
+                setMovieList(data.results)
                 // setIsLoading(false)
             })
             .catch(err => console.error('error:' + err));
     }, [type])
 
 
+    const sortByDate = () => {
+        if(movieList.length === 0)  return; 
+        setMovieList(prevList => {
+            let sortedList = [...movieList];
+            const finalList = sortedList.sort((b,a) =>  new Date(a['release_date']) -new Date(b['release_date']))
+            return finalList
+        })
+    }
+
+    const sortByPopularity = () => {
+        if(movieList.length === 0)  return; 
+        setMovieList(prevList => {
+            let sortedList = [...movieList];
+            const finalList = sortedList.sort((b,a) => a['popularity'] -b['popularity'])
+            return finalList
+        })
+    }
+
+    const sortByRating = () => {
+        if(movieList.length === 0)  return; 
+        setMovieList(prevList => {
+            let sortedList = [...movieList];
+            const finalList = sortedList.sort((b, a) => a['vote_average'] -b['vote_average'])
+            return finalList
+        })
+    }
+
     return (
-        <>
-            <h1>{type === 'top_rated' ? 'Top Rated'
-                : type === 'popular' ? 'Popular'
-                    : type === 'upcoming' ? 'Upcoming'
-                        : type === 'now_playing' ? 'Now Playing'
-                            : ''} Movies</h1>
+        <div className="list-container" >
+            <MovieDetailHeading type={type} sortByDate={sortByDate} sortByRating={sortByRating} sortByPopularity={sortByPopularity}/>
             <div className="movie-list">
                 {
-                    popularMovies.map(movie => {
+                    movieList.map(movie => {
                         return (
                             <Card movie={movie} key={movie.id} />
                         )
                     })
                 }
             </div>
-        </>
+        </div>
     )
 }

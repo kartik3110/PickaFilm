@@ -1,23 +1,26 @@
 .navBar {
     display: flex;
+    /* position: fixed; */
     align-items: center;
-    /* justify-content: space-evenly; */
+    /* gap: 30px; */
     margin-bottom: 2%;
+    margin-top: 1%;
 }
 
 .navLink {
     text-decoration: none;
     margin: 10px;
-    margin-left: 50px;
+    margin-left: 30px;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     transition: all 0.2s;
 }
 
 .links {
     display: flex;
     margin-left: auto;
-    margin-right: 40px;
+    gap: 30px;
+    margin-right: 50px;
 }
 
 .navImage {
@@ -29,6 +32,7 @@
 .navLink:hover {
     color: #f5cb5c;
 }
+
 
 @media (max-width: 768px) {
 

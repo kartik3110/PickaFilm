@@ -1,6 +1,9 @@
 import './Navbar.css'
 import { Link } from 'react-router-dom'
 import myLogo from '../../assets/logo-pickafilm.png'
+import NavSearch from '../NavSearch/NavSearch'
+
+
 export default function Navbar() {
     return (
         <nav className='navBar'>
@@ -12,6 +15,7 @@ export default function Navbar() {
                 <Link to='/movies/now_playing' className='navLink'><span>Now Playing</span> <i className="fa-solid fa-tv"></i></Link>
                 {/* <Link to='/movies/2' className='navLink'>Favourites <i className="fa-solid fa-heart"></i></Link> */}
             </div>
+        <NavSearch/>
         </nav>
     )
 }
