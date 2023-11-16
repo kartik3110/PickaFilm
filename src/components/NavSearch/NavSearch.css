@@ -9,7 +9,7 @@
     height: reset;
     border: 1px solid white;
     outline: none;
-    border: 1px solid #f5cb5c;
+    /* border: 1px solid #f5cb5c; */
 }
 .search-input:focus{
     border: 1px solid #f5cb5c;
@@ -20,11 +20,10 @@
     border: none;
     position: absolute;
     z-index: 4;
-    top: 10px;
+    top: 9px;
     right: 26px;
     color: #f5cb5c;
     cursor: pointer;
-    /* background: #f5cb5c; */
 }   
 
 .suggestions {
