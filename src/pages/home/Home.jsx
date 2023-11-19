@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import MultiCarousel from "../../components/MultiCarousel/MultiCarousel";
 import Rating from "../../components/Rating/Rating";
 import Footer from "../../components/Footer/Footer";
-// const fetch = require('node-fetch');
+
 
 export default function Home() {
     const [popularMovies, setPopularMovies] = useState([]);

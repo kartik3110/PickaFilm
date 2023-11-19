@@ -2,14 +2,12 @@
 .search-input {
     padding: 10px;
     width: 200px;
-    /* border-radius: 20px; */
     background-color: transparent;
     color: #f5cb5c;
     margin-right: 20px;
     height: reset;
     border: 1px solid white;
     outline: none;
-    /* border: 1px solid #f5cb5c; */
 }
 .search-input:focus{
     border: 1px solid #f5cb5c;
@@ -36,7 +34,6 @@
     right: 20px;
     top: 40px;
     box-shadow: 2px 2px 0.8em rgb(66, 66, 66), -2px -2px 0.8em rgb(66,66,66);
-    /* border: 1px solid #f5cb5c  ; */
 }
 
 .suggestions li{

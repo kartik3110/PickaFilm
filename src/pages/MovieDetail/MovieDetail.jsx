@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import './MovieDetail.css'
 import { useParams } from 'react-router-dom'
-import Card from '../../components/card/Card';
 
 export default function MovieDetail() {
   const { id } = useParams();
@@ -45,7 +44,7 @@ export default function MovieDetail() {
             </div>
             <div className="detail-rating">
               <div className="detail-rate">
-                {details?.vote_average}<i className="fas fa-star" />
+                {((details?.vote_average + 1) / 2).toFixed(1)}<i className="fas fa-star" />
               </div>
               <div className="detail-num-votes">(
                 {details?.vote_count} votes)
