@@ -2,11 +2,15 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Link as MuiLink } from "@mui/material";
+import { Link } from "react-router-dom";
+import Error from "../../components/Error";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { isPasswordValid } from "../../utils/clientSideValidation";
+import { useState } from "react";
 
 const defaultTheme = createTheme({
   palette: {
@@ -15,19 +19,29 @@ const defaultTheme = createTheme({
 });
 
 export default function SignIn() {
+  const [error, setError] = useState(null);
+  const handleCloseError = () => {
+    setError(null);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
+    setError(null);
     const data = new FormData(event.currentTarget);
     console.log({
+      username: data.get("username"),
       email: data.get("email"),
       password: data.get("password"),
     });
+    const passwordError = isPasswordValid(data.get("password"));
+    if (passwordError) {
+      setError(passwordError);
+      return;
+    }
   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
-        {/* <CssBaseline /> */}
         <Box
           sx={{
             marginTop: 8,
@@ -36,6 +50,11 @@ export default function SignIn() {
             alignItems: "center",
           }}
         >
+          <Error
+            error={error}
+            handleCloseError={handleCloseError}
+            message={error}
+          />
           <Avatar sx={{ m: 1, bgcolor: "transparent" }}>
             <LockOutlinedIcon sx={{ color: "white" }} />
           </Avatar>
@@ -45,7 +64,7 @@ export default function SignIn() {
           <Box
             component="form"
             onSubmit={handleSubmit}
-            noValidate
+            // noValidate
             sx={{ mt: 1 }}
           >
             <TextField
@@ -66,7 +85,6 @@ export default function SignIn() {
               id="email"
               label="Email Address"
               name="email"
-              autoFocus
             />
             <TextField
               margin="normal"
@@ -88,7 +106,7 @@ export default function SignIn() {
               Sign Up
             </Button>
 
-            <MuiLink href="/signin" variant="body2">
+            <MuiLink component={Link} to="/signin" variant="body2">
               {"Have an account? Sign In"}
             </MuiLink>
           </Box>
