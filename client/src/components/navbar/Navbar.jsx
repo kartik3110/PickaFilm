@@ -1,9 +1,12 @@
 import "./Navbar.css";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import myLogo from "../../assets/logo-pickafilm.png";
+import { AuthContext } from "../../context/AuthContext";
 import NavSearch from "../NavSearch/NavSearch";
 
 export default function Navbar() {
+  const authCtx = useContext(AuthContext);
   return (
     <nav className="navBar">
       <Link to="/" className="navLogo">
@@ -29,14 +32,15 @@ export default function Navbar() {
         </Link>
         {/* <Link to='/movies/2' className='navLink'>Favourites <i className="fa-solid fa-heart"></i></Link> */}
       </div>
-      {/* <div className="login"> */}
-      <Link to="/signin">
-        <button id="loginButton">
-          Sign In
-          {/* <i className="fa-solid fa-sign-in"></i> */}
+      {!authCtx.user ? (
+        <Link to="/signin">
+          <button id="loginButton">Sign In</button>
+        </Link>
+      ) : (
+        <button id="loginButton" onClick={authCtx.logoutUser}>
+          Sign Out
         </button>
-      </Link>
-      {/* </div> */}
+      )}
     </nav>
   );
 }

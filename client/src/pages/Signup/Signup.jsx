@@ -10,7 +10,9 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { isPasswordValid } from "../../utils/clientSideValidation";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const defaultTheme = createTheme({
   palette: {
@@ -18,24 +20,34 @@ const defaultTheme = createTheme({
   },
 });
 
-export default function SignIn() {
+export default function Signup() {
+  const authCtx = useContext(AuthContext);
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
   const handleCloseError = () => {
     setError(null);
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setError(null);
     const data = new FormData(event.currentTarget);
-    console.log({
+    const userDetails = {
       username: data.get("username"),
       email: data.get("email"),
       password: data.get("password"),
-    });
+    };
     const passwordError = isPasswordValid(data.get("password"));
     if (passwordError) {
       setError(passwordError);
       return;
+    }
+
+    try {
+      await authCtx.signupUser(userDetails);
+      navigate("/");
+    } catch (error) {
+      setError(error.message);
+      console.log("adsfsdf", error);
     }
   };
 
