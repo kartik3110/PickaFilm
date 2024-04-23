@@ -12,6 +12,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AuthContext } from "../context/AuthContext";
 import { useContext, useState } from "react";
+import toast from "react-hot-toast";
 
 const defaultTheme = createTheme({
   palette: {
@@ -37,6 +38,7 @@ export default function SignIn() {
     try {
       await authCtx.loginUser(userDetails);
       navigate("/");
+      toast.success("Signed in successfully!");
     } catch (error) {
       setError(error.message);
       console.log(error);

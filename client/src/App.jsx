@@ -6,11 +6,14 @@ import MovieDetail from "./pages/MovieDetail/MovieDetail.jsx";
 import Signup from "./pages/Signup/Signup.jsx";
 import Signin from "./pages/Signin.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import toast, { Toaster } from "react-hot-toast";
+
 function App() {
   return (
     <>
       <BrowserRouter>
         <Navbar />
+        <Toaster />
         <Routes>
           <Route index element={<Home />} />
           <Route path="/movie/:id" element={<MovieDetail />} />

@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-
+import toast from "react-hot-toast";
 export const AuthContext = createContext({
   user: {
     username: "",
@@ -32,9 +32,12 @@ export const AuthProvider = ({ children }) => {
     const data = await response.json();
     if (!response.ok) {
       console.log("error signing out: ", data);
+      toast.error("Error signing out");
+    } else {
+      setUser(null);
+      console.log("signed out user");
+      toast.success("Signed out successfully");
     }
-    setUser(null);
-    console.log("signed out user");
   };
   const loginUser = async (userDetails) => {
     try {

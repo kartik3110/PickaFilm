@@ -13,6 +13,7 @@ import { isPasswordValid } from "../../utils/clientSideValidation";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const defaultTheme = createTheme({
   palette: {
@@ -45,6 +46,7 @@ export default function Signup() {
     try {
       await authCtx.signupUser(userDetails);
       navigate("/");
+      toast.success("Welcome to Pickafilm!");
     } catch (error) {
       setError(error.message);
       console.log("adsfsdf", error);
